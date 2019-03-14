@@ -30,6 +30,12 @@ function! ale#gradle#FindProjectRoot(buffer) abort
         return fnamemodify(l:build_path, ':h')
     endif
 
+    let l:build_path = ale#path#FindNearestFile(a:buffer, 'build.gradle.kts')
+
+    if !empty(l:build_path)
+        return fnamemodify(l:build_path, ':h')
+    endif
+
     return ''
 endfunction
 
